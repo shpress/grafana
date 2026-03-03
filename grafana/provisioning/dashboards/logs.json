@@ -2,97 +2,228 @@
   "uid": "logs-dashboard",
   "title": "Log Explorer",
   "description": "Centralized log aggregation via Loki",
-  "tags": ["logs", "loki", "infrastructure"],
+  "tags": [
+    "logs",
+    "loki",
+    "infrastructure"
+  ],
   "timezone": "browser",
   "editable": true,
   "graphTooltip": 1,
   "refresh": "30s",
   "schemaVersion": 39,
-  "version": 1,
-  "time": { "from": "now-1h", "to": "now" },
+  "version": 2,
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
   "templating": {
     "list": [
       {
         "name": "server",
         "type": "query",
-        "datasource": { "type": "loki", "uid": "loki" },
+        "datasource": {
+          "type": "loki",
+          "uid": "loki"
+        },
         "query": "label_values(server)",
         "refresh": 2,
         "includeAll": true,
         "multi": true,
-        "current": { "selected": true, "text": "All", "value": "$__all" },
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
         "sort": 1
       },
       {
         "name": "container",
         "type": "query",
-        "datasource": { "type": "loki", "uid": "loki" },
+        "datasource": {
+          "type": "loki",
+          "uid": "loki"
+        },
         "query": "label_values({server=~\"$server\"}, container)",
         "refresh": 2,
         "includeAll": true,
         "multi": true,
-        "current": { "selected": true, "text": "All", "value": "$__all" },
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
         "sort": 1
       }
     ]
   },
-  "annotations": { "list": [] },
+  "annotations": {
+    "list": []
+  },
   "panels": [
     {
       "id": 1,
       "title": "Log Rate by Server",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
-      "datasource": { "type": "loki", "uid": "loki" },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "drawStyle": "bars",
             "fillOpacity": 50,
             "lineWidth": 1,
-            "stacking": { "group": "A", "mode": "normal" },
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
             "axisBorderShow": false,
-            "scaleDistribution": { "type": "linear" },
+            "scaleDistribution": {
+              "type": "linear"
+            },
             "showPoints": "never"
           },
           "unit": "short"
         },
         "overrides": [
-          { "matcher": { "id": "byName", "options": "222" }, "properties": [{ "id": "color", "value": { "mode": "fixed", "fixedColor": "#4ecdc4" } }] },
-          { "matcher": { "id": "byName", "options": "224" }, "properties": [{ "id": "color", "value": { "mode": "fixed", "fixedColor": "#ff6b6b" } }] },
-          { "matcher": { "id": "byName", "options": "228" }, "properties": [{ "id": "color", "value": { "mode": "fixed", "fixedColor": "#ffd93d" } }] },
-          { "matcher": { "id": "byName", "options": "46" }, "properties": [{ "id": "color", "value": { "mode": "fixed", "fixedColor": "#6bcf7f" } }] },
-          { "matcher": { "id": "byName", "options": "oracle" }, "properties": [{ "id": "color", "value": { "mode": "fixed", "fixedColor": "#9b59b6" } }] }
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ff6b6b"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ffd93d"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "46"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#6bcf7f"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
         ]
       },
       "options": {
-        "tooltip": { "mode": "multi", "sort": "desc" },
-        "legend": { "displayMode": "list", "placement": "bottom" }
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
       },
-      "targets": [{
-        "expr": "sum by (server) (count_over_time({server=~\"$server\"} [1m]))",
-        "legendFormat": "{{server}}",
-        "refId": "A"
-      }]
+      "targets": [
+        {
+          "expr": "sum by (server) (count_over_time({server=~\"$server\"} [1m]))",
+          "legendFormat": "{{server}}",
+          "refId": "A"
+        }
+      ]
     },
     {
       "id": 2,
       "title": "Error Rate",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
-      "datasource": { "type": "loki", "uid": "loki" },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "drawStyle": "line",
             "fillOpacity": 15,
             "lineWidth": 2,
             "lineInterpolation": "smooth",
-            "stacking": { "group": "A", "mode": "none" },
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
             "axisBorderShow": false,
-            "scaleDistribution": { "type": "linear" },
+            "scaleDistribution": {
+              "type": "linear"
+            },
             "showPoints": "never"
           },
           "unit": "short"
@@ -100,21 +231,37 @@
         "overrides": []
       },
       "options": {
-        "tooltip": { "mode": "multi", "sort": "desc" },
-        "legend": { "displayMode": "list", "placement": "bottom" }
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
       },
-      "targets": [{
-        "expr": "sum by (server) (count_over_time({server=~\"$server\"} |~ \"(?i)error|panic|fatal|critical\" [5m]))",
-        "legendFormat": "{{server}}",
-        "refId": "A"
-      }]
+      "targets": [
+        {
+          "expr": "sum by (server) (count_over_time({server=~\"$server\"} |~ \"(?i)error|panic|fatal|critical\" [5m]))",
+          "legendFormat": "{{server}}",
+          "refId": "A"
+        }
+      ]
     },
     {
       "id": 3,
       "title": "Container Logs",
       "type": "logs",
-      "gridPos": { "h": 16, "w": 24, "x": 0, "y": 8 },
-      "datasource": { "type": "loki", "uid": "loki" },
+      "gridPos": {
+        "h": 16,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
       "options": {
         "showTime": true,
         "showLabels": true,
@@ -125,11 +272,27 @@
         "dedupStrategy": "none",
         "sortOrder": "Descending"
       },
-      "targets": [{
-        "expr": "{server=~\"$server\", container=~\"$container\"}",
-        "refId": "A",
-        "maxLines": 500
-      }]
+      "targets": [
+        {
+          "expr": "{server=~\"$server\", container=~\"$container\"}",
+          "refId": "A",
+          "maxLines": 500
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Home",
+      "tooltip": "Back to Infrastructure Command Center",
+      "type": "link",
+      "url": "/d/infra-beautiful"
     }
   ]
 }

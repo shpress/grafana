@@ -2,14 +2,30 @@
   "uid": "storage",
   "title": "Storage",
   "description": "Storage monitoring across all servers: disk usage, I/O, and capacity predictions",
-  "tags": ["storage", "disk", "infrastructure"],
+  "tags": [
+    "storage",
+    "disk",
+    "infrastructure"
+  ],
   "timezone": "browser",
   "editable": true,
   "graphTooltip": 1,
   "refresh": "5m",
-  "time": { "from": "now-24h", "to": "now" },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
   "timepicker": {
-    "refresh_intervals": ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h"]
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h"
+    ]
   },
   "templating": {
     "list": [
@@ -17,13 +33,36 @@
         "name": "server",
         "label": "Server",
         "type": "custom",
-        "current": { "text": "All", "value": "$__all" },
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "options": [
-          { "text": "All", "value": "$__all", "selected": true },
-          { "text": "222", "value": "222", "selected": false },
-          { "text": "224", "value": "224", "selected": false },
-          { "text": "228", "value": "228", "selected": false },
-          { "text": "46", "value": "46", "selected": false }
+          {
+            "text": "All",
+            "value": "$__all",
+            "selected": true
+          },
+          {
+            "text": "222",
+            "value": "222",
+            "selected": false
+          },
+          {
+            "text": "224",
+            "value": "224",
+            "selected": false
+          },
+          {
+            "text": "228",
+            "value": "228",
+            "selected": false
+          },
+          {
+            "text": "46",
+            "value": "46",
+            "selected": false
+          }
         ],
         "query": "222,224,228,46",
         "multi": true,
@@ -34,10 +73,21 @@
         "name": "show_network",
         "label": "Show Network Mounts",
         "type": "custom",
-        "current": { "text": "No", "value": "no" },
+        "current": {
+          "text": "No",
+          "value": "no"
+        },
         "options": [
-          { "text": "No", "value": "no", "selected": true },
-          { "text": "Yes", "value": "yes", "selected": false }
+          {
+            "text": "No",
+            "value": "no",
+            "selected": true
+          },
+          {
+            "text": "Yes",
+            "value": "yes",
+            "selected": false
+          }
         ],
         "query": "no,yes",
         "multi": false,
@@ -51,7 +101,12 @@
       "type": "row",
       "title": "Local Disk Usage by Server",
       "collapsed": false,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
       "panels": []
     },
     {
@@ -59,8 +114,16 @@
       "title": "ZimaCube 222",
       "description": "eMMC (44GB), SSD (477GB), HDD 8TB (7.3TB)",
       "type": "bargauge",
-      "gridPos": { "h": 7, "w": 12, "x": 0, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -90,18 +153,38 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 70 },
-              { "color": "orange", "value": 85 },
-              { "color": "red", "value": 95 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 85
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "horizontal",
         "displayMode": "gradient",
         "showUnfilled": true,
@@ -115,8 +198,16 @@
       "title": "ZimaCube 224",
       "description": "eMMC (44GB), SSD (233GB)",
       "type": "bargauge",
-      "gridPos": { "h": 7, "w": 12, "x": 12, "y": 1 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -140,18 +231,38 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 70 },
-              { "color": "orange", "value": 85 },
-              { "color": "red", "value": 95 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 85
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "horizontal",
         "displayMode": "gradient",
         "showUnfilled": true,
@@ -165,8 +276,16 @@
       "title": "ZimaCube 228",
       "description": "eMMC (16.5GB only)",
       "type": "bargauge",
-      "gridPos": { "h": 7, "w": 12, "x": 0, "y": 8 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -184,18 +303,38 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 70 },
-              { "color": "orange", "value": 85 },
-              { "color": "red", "value": 95 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 85
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "horizontal",
         "displayMode": "gradient",
         "showUnfilled": true,
@@ -209,8 +348,16 @@
       "title": "Synology NAS (.46)",
       "description": "System (8GB), Volume1 (12.5TB), Volume2 (448GB), Volume3 (448GB)",
       "type": "bargauge",
-      "gridPos": { "h": 7, "w": 12, "x": 12, "y": 8 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -246,18 +393,38 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 70 },
-              { "color": "orange", "value": 85 },
-              { "color": "red", "value": 95 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 85
+              },
+              {
+                "color": "red",
+                "value": 95
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "horizontal",
         "displayMode": "gradient",
         "showUnfilled": true,
@@ -271,15 +438,28 @@
       "type": "row",
       "title": "Disk Space Available",
       "collapsed": false,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 15 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
       "panels": []
     },
     {
       "id": 20,
       "title": "Available Space - ZimaCube 222",
       "type": "stat",
-      "gridPos": { "h": 5, "w": 6, "x": 0, "y": 16 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -307,17 +487,34 @@
           "thresholds": {
             "mode": "percentage",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 15 },
-              { "color": "green", "value": 30 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 15
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
         "orientation": "horizontal",
         "textMode": "auto",
         "colorMode": "background",
@@ -329,8 +526,16 @@
       "id": 21,
       "title": "Available Space - ZimaCube 224",
       "type": "stat",
-      "gridPos": { "h": 5, "w": 6, "x": 6, "y": 16 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -352,17 +557,34 @@
           "thresholds": {
             "mode": "percentage",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 15 },
-              { "color": "green", "value": 30 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 15
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
         "orientation": "horizontal",
         "textMode": "auto",
         "colorMode": "background",
@@ -374,8 +596,16 @@
       "id": 22,
       "title": "Available Space - ZimaCube 228",
       "type": "stat",
-      "gridPos": { "h": 5, "w": 6, "x": 12, "y": 16 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -391,17 +621,34 @@
           "thresholds": {
             "mode": "percentage",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 15 },
-              { "color": "green", "value": 30 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 15
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
         "orientation": "horizontal",
         "textMode": "auto",
         "colorMode": "background",
@@ -413,8 +660,16 @@
       "id": 23,
       "title": "Available Space - Synology",
       "type": "stat",
-      "gridPos": { "h": 5, "w": 6, "x": 18, "y": 16 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "targets": [
         {
           "refId": "A",
@@ -448,17 +703,34 @@
           "thresholds": {
             "mode": "percentage",
             "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 15 },
-              { "color": "green", "value": 30 }
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 15
+              },
+              {
+                "color": "green",
+                "value": 30
+              }
             ]
           },
-          "color": { "mode": "thresholds" }
+          "color": {
+            "mode": "thresholds"
+          }
         },
         "overrides": []
       },
       "options": {
-        "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
         "orientation": "horizontal",
         "textMode": "auto",
         "colorMode": "background",
@@ -471,7 +743,12 @@
       "type": "row",
       "title": "Detailed Table",
       "collapsed": false,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 21 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
       "panels": []
     },
     {
@@ -479,8 +756,16 @@
       "title": "All Disks - Detailed View",
       "description": "All physical disks and volumes filtered to canonical mount points (duplicates removed)",
       "type": "table",
-      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 22 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percent",
@@ -488,9 +773,18 @@
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              { "color": "green", "value": null },
-              { "color": "yellow", "value": 70 },
-              { "color": "red", "value": 85 }
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
             ]
           },
           "custom": {
@@ -504,55 +798,127 @@
         },
         "overrides": [
           {
-            "matcher": { "id": "byName", "options": "Server" },
+            "matcher": {
+              "id": "byName",
+              "options": "Server"
+            },
             "properties": [
-              { "id": "custom.width", "value": 80 },
-              { "id": "custom.displayMode", "value": "auto" }
+              {
+                "id": "custom.width",
+                "value": 80
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Mount Point" },
+            "matcher": {
+              "id": "byName",
+              "options": "Mount Point"
+            },
             "properties": [
-              { "id": "custom.width", "value": 200 },
-              { "id": "custom.displayMode", "value": "auto" }
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Device" },
+            "matcher": {
+              "id": "byName",
+              "options": "Device"
+            },
             "properties": [
-              { "id": "custom.width", "value": 200 },
-              { "id": "custom.displayMode", "value": "auto" }
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Type" },
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
             "properties": [
-              { "id": "custom.width", "value": 80 },
-              { "id": "custom.displayMode", "value": "auto" }
+              {
+                "id": "custom.width",
+                "value": 80
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Total" },
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
             "properties": [
-              { "id": "unit", "value": "bytes" },
-              { "id": "custom.width", "value": 100 },
-              { "id": "custom.displayMode", "value": "auto" },
-              { "id": "decimals", "value": 1 }
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Available" },
+            "matcher": {
+              "id": "byName",
+              "options": "Available"
+            },
             "properties": [
-              { "id": "unit", "value": "bytes" },
-              { "id": "custom.width", "value": 100 },
-              { "id": "custom.displayMode", "value": "auto" },
-              { "id": "decimals", "value": 1 }
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
             ]
           },
           {
-            "matcher": { "id": "byName", "options": "Used %" },
+            "matcher": {
+              "id": "byName",
+              "options": "Used %"
+            },
             "properties": [
-              { "id": "custom.width", "value": 250 }
+              {
+                "id": "custom.width",
+                "value": 250
+              }
             ]
           }
         ]
@@ -581,20 +947,45 @@
       "transformations": [
         {
           "id": "joinByField",
-          "options": { "byField": "mountpoint", "mode": "outer" }
+          "options": {
+            "byField": "mountpoint",
+            "mode": "outer"
+          }
         },
         {
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Time": true, "Time 1": true, "Time 2": true, "Time 3": true,
-              "__name__": true, "__name__ 1": true, "__name__ 2": true, "__name__ 3": true,
-              "job": true, "job 1": true, "job 2": true, "job 3": true,
-              "instance": true, "instance 1": true, "instance 2": true, "instance 3": true,
-              "fstype 1": true, "fstype 2": true, "fstype 3": true,
-              "device 1": true, "device 2": true, "device 3": true,
-              "server 1": true, "server 2": true, "server 3": true,
-              "mountpoint 1": true, "hostname": true, "hostname 1": true, "hostname 2": true, "hostname 3": true
+              "Time": true,
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
+              "__name__": true,
+              "__name__ 1": true,
+              "__name__ 2": true,
+              "__name__ 3": true,
+              "job": true,
+              "job 1": true,
+              "job 2": true,
+              "job 3": true,
+              "instance": true,
+              "instance 1": true,
+              "instance 2": true,
+              "instance 3": true,
+              "fstype 1": true,
+              "fstype 2": true,
+              "fstype 3": true,
+              "device 1": true,
+              "device 2": true,
+              "device 3": true,
+              "server 1": true,
+              "server 2": true,
+              "server 3": true,
+              "mountpoint 1": true,
+              "hostname": true,
+              "hostname 1": true,
+              "hostname 2": true,
+              "hostname 3": true
             },
             "renameByName": {
               "server": "Server",
@@ -619,8 +1010,15 @@
       ],
       "options": {
         "showHeader": true,
-        "sortBy": [{ "displayName": "Used %", "desc": true }],
-        "footer": { "show": false }
+        "sortBy": [
+          {
+            "displayName": "Used %",
+            "desc": true
+          }
+        ],
+        "footer": {
+          "show": false
+        }
       }
     },
     {
@@ -628,20 +1026,35 @@
       "type": "row",
       "title": "Disk I/O",
       "collapsed": false,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 34 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
       "panels": []
     },
     {
       "id": 4,
       "title": "Disk I/O - Read",
       "type": "timeseries",
-      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 35 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 35
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "Bps",
           "decimals": 2,
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "drawStyle": "line",
             "lineInterpolation": "smooth",
@@ -650,13 +1063,23 @@
             "gradientMode": "opacity",
             "spanNulls": false,
             "showPoints": "never",
-            "stacking": { "mode": "none", "group": "A" },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
             "axisPlacement": "auto",
-            "thresholdsStyle": { "mode": "off" }
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "thresholds": {
             "mode": "absolute",
-            "steps": [{ "color": "green", "value": null }]
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
           }
         },
         "overrides": []
@@ -669,21 +1092,42 @@
         }
       ],
       "options": {
-        "legend": { "displayMode": "table", "placement": "bottom", "calcs": ["mean", "max", "lastNotNull"] },
-        "tooltip": { "mode": "multi", "sort": "desc" }
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       }
     },
     {
       "id": 5,
       "title": "Disk I/O - Write",
       "type": "timeseries",
-      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 35 },
-      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 35
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "Bps",
           "decimals": 2,
-          "color": { "mode": "palette-classic" },
+          "color": {
+            "mode": "palette-classic"
+          },
           "custom": {
             "drawStyle": "line",
             "lineInterpolation": "smooth",
@@ -692,13 +1136,23 @@
             "gradientMode": "opacity",
             "spanNulls": false,
             "showPoints": "never",
-            "stacking": { "mode": "none", "group": "A" },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
             "axisPlacement": "auto",
-            "thresholdsStyle": { "mode": "off" }
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "thresholds": {
             "mode": "absolute",
-            "steps": [{ "color": "green", "value": null }]
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
           }
         },
         "overrides": []
@@ -711,8 +1165,19 @@
         }
       ],
       "options": {
-        "legend": { "displayMode": "table", "placement": "bottom", "calcs": ["mean", "max", "lastNotNull"] },
-        "tooltip": { "mode": "multi", "sort": "desc" }
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       }
     },
     {
@@ -720,15 +1185,28 @@
       "type": "row",
       "title": "Capacity Predictions",
       "collapsed": true,
-      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 44 },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
       "panels": [
         {
           "id": 6,
           "title": "Disk Full Prediction (30-day forecast)",
           "description": "Predicted available space in 30 days based on 7-day trend. Negative = predicted to fill before then.",
           "type": "stat",
-          "gridPos": { "h": 8, "w": 24, "x": 0, "y": 45 },
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 45
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "fieldConfig": {
             "defaults": {
               "unit": "bytes",
@@ -736,13 +1214,35 @@
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
-                  { "color": "red", "value": null },
-                  { "color": "yellow", "value": 0 },
-                  { "color": "green", "value": 10737418240 }
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 0
+                  },
+                  {
+                    "color": "green",
+                    "value": 10737418240
+                  }
                 ]
               },
-              "color": { "mode": "thresholds" },
-              "mappings": [{ "type": "special", "options": { "match": "null", "result": { "text": "N/A", "color": "text" } } }]
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "type": "special",
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A",
+                      "color": "text"
+                    }
+                  }
+                }
+              ]
             },
             "overrides": []
           },
@@ -755,7 +1255,13 @@
             }
           ],
           "options": {
-            "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+            "reduceOptions": {
+              "values": false,
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": ""
+            },
             "orientation": "horizontal",
             "textMode": "auto",
             "colorMode": "background",
@@ -768,8 +1274,16 @@
           "title": "Estimated Days Until Full",
           "description": "Days until full based on 7-day trend. Only meaningful when usage is trending upward.",
           "type": "stat",
-          "gridPos": { "h": 8, "w": 24, "x": 0, "y": 53 },
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 53
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "fieldConfig": {
             "defaults": {
               "unit": "d",
@@ -777,16 +1291,56 @@
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
-                  { "color": "red", "value": null },
-                  { "color": "yellow", "value": 30 },
-                  { "color": "green", "value": 90 }
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 30
+                  },
+                  {
+                    "color": "green",
+                    "value": 90
+                  }
                 ]
               },
-              "color": { "mode": "thresholds" },
+              "color": {
+                "mode": "thresholds"
+              },
               "mappings": [
-                { "type": "special", "options": { "match": "null", "result": { "text": "N/A", "color": "text" } } },
-                { "type": "range", "options": { "from": 3650, "to": 1e15, "result": { "text": ">10y", "color": "green" } } },
-                { "type": "range", "options": { "from": -1e15, "to": 0, "result": { "text": "Shrinking", "color": "green" } } }
+                {
+                  "type": "special",
+                  "options": {
+                    "match": "null",
+                    "result": {
+                      "text": "N/A",
+                      "color": "text"
+                    }
+                  }
+                },
+                {
+                  "type": "range",
+                  "options": {
+                    "from": 3650,
+                    "to": 1000000000000000.0,
+                    "result": {
+                      "text": ">10y",
+                      "color": "green"
+                    }
+                  }
+                },
+                {
+                  "type": "range",
+                  "options": {
+                    "from": -1000000000000000.0,
+                    "to": 0,
+                    "result": {
+                      "text": "Shrinking",
+                      "color": "green"
+                    }
+                  }
+                }
               ]
             },
             "overrides": []
@@ -800,7 +1354,13 @@
             }
           ],
           "options": {
-            "reduceOptions": { "values": false, "calcs": ["lastNotNull"], "fields": "" },
+            "reduceOptions": {
+              "values": false,
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": ""
+            },
             "orientation": "horizontal",
             "textMode": "auto",
             "colorMode": "background",
@@ -812,13 +1372,29 @@
     }
   ],
   "schemaVersion": 39,
-  "version": 2,
-  "links": [],
+  "version": 3,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Home",
+      "tooltip": "Back to Infrastructure Command Center",
+      "type": "link",
+      "url": "/d/infra-beautiful"
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": { "type": "grafana", "uid": "-- Grafana --" },
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",

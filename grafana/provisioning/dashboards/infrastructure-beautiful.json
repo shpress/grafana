@@ -14,7 +14,7 @@
   "liveNow": false,
   "refresh": "30s",
   "schemaVersion": 39,
-  "version": 6,
+  "version": 7,
   "time": {
     "from": "now-6h",
     "to": "now"
@@ -4988,6 +4988,116 @@
           "values": false
         }
       }
+    }
+  ],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Server Overview",
+      "tooltip": "Detailed per-server stats",
+      "type": "link",
+      "url": "/d/server-overview"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Docker",
+      "tooltip": "Docker container metrics",
+      "type": "link",
+      "url": "/d/docker-containers"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Storage",
+      "tooltip": "Disk usage across servers",
+      "type": "link",
+      "url": "/d/storage"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Network",
+      "tooltip": "Network traffic",
+      "type": "link",
+      "url": "/d/network"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "GPU",
+      "tooltip": "RTX 3050 GPU metrics",
+      "type": "link",
+      "url": "/d/gpu"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Internet Speed",
+      "tooltip": "Speedtest results",
+      "type": "link",
+      "url": "/d/internet-speed"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Pi-hole DNS",
+      "tooltip": "DNS filtering metrics",
+      "type": "link",
+      "url": "/d/pihole-metrics"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Logs",
+      "tooltip": "Centralized log viewer",
+      "type": "link",
+      "url": "/d/logs-dashboard"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Electricity",
+      "tooltip": "Power consumption estimates",
+      "type": "link",
+      "url": "/d/electricity-cost"
     }
   ]
 }

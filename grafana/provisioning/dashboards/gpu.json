@@ -20,7 +20,20 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Home",
+      "tooltip": "Back to Infrastructure Command Center",
+      "type": "link",
+      "url": "/d/infra-beautiful"
+    }
+  ],
   "panels": [
     {
       "collapsed": false,
@@ -758,5 +771,5 @@
   "timezone": "",
   "title": "GPU \u2014 RTX 3050",
   "uid": "gpu",
-  "version": 1
+  "version": 2
 }

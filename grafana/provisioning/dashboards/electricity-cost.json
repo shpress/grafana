@@ -11,7 +11,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
   "editable": true,
   "graphTooltip": 1,
   "refresh": "1m",
@@ -33,7 +33,20 @@
   "fiscalYearStartMonth": 0,
   "liveNow": false,
   "weekStart": "",
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Home",
+      "tooltip": "Back to Infrastructure Command Center",
+      "type": "link",
+      "url": "/d/infra-beautiful"
+    }
+  ],
   "annotations": {
     "list": [
       {
