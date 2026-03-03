@@ -14,7 +14,7 @@
   "liveNow": false,
   "refresh": "30s",
   "schemaVersion": 39,
-  "version": 7,
+  "version": 8,
   "time": {
     "from": "now-6h",
     "to": "now"
@@ -688,7 +688,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 22
       },
       "panels": []
     },
@@ -705,7 +705,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 11
+        "y": 23
       },
       "targets": [
         {
@@ -810,7 +810,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 11
+        "y": 23
       },
       "targets": [
         {
@@ -915,7 +915,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 11
+        "y": 23
       },
       "targets": [
         {
@@ -1009,7 +1009,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 30
       },
       "targets": [
         {
@@ -1221,7 +1221,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 30
       },
       "targets": [
         {
@@ -1429,7 +1429,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 44
       },
       "panels": []
     },
@@ -1446,7 +1446,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 61
       },
       "targets": [
         {
@@ -1591,7 +1591,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 66
       },
       "panels": []
     },
@@ -1608,7 +1608,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 55
+        "y": 67
       },
       "targets": [
         {
@@ -1681,7 +1681,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 55
+        "y": 67
       },
       "targets": [
         {
@@ -1754,7 +1754,7 @@
         "h": 7,
         "w": 4,
         "x": 16,
-        "y": 55
+        "y": 67
       },
       "targets": [
         {
@@ -1822,7 +1822,7 @@
         "h": 7,
         "w": 4,
         "x": 20,
-        "y": 55
+        "y": 67
       },
       "targets": [
         {
@@ -1890,7 +1890,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 62
+        "y": 74
       },
       "targets": [
         {
@@ -2020,7 +2020,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 62
+        "y": 74
       },
       "targets": [
         {
@@ -2146,7 +2146,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 82
       },
       "panels": [
         {
@@ -2162,7 +2162,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 71
+            "y": 83
           },
           "targets": [
             {
@@ -2364,7 +2364,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 71
+            "y": 83
           },
           "targets": [
             {
@@ -2564,7 +2564,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 79
+        "y": 91
       },
       "panels": [
         {
@@ -2580,7 +2580,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 80
+            "y": 92
           },
           "targets": [
             {
@@ -2649,7 +2649,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 80
+            "y": 92
           },
           "targets": [
             {
@@ -2718,7 +2718,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 80
+            "y": 92
           },
           "targets": [
             {
@@ -2793,7 +2793,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 80
+            "y": 92
           },
           "targets": [
             {
@@ -2859,7 +2859,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 87
+        "y": 99
       },
       "panels": []
     },
@@ -2876,7 +2876,7 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 100
       },
       "targets": [
         {
@@ -3155,7 +3155,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 53
       },
       "targets": [
         {
@@ -3357,7 +3357,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 41
+        "y": 53
       },
       "targets": [
         {
@@ -3558,7 +3558,7 @@
         "h": 4,
         "w": 6,
         "x": 18,
-        "y": 26
+        "y": 38
       },
       "options": {
         "mode": "time",
@@ -3603,7 +3603,7 @@
         "h": 8,
         "w": 18,
         "x": 0,
-        "y": 26
+        "y": 38
       },
       "targets": [
         {
@@ -4343,7 +4343,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 37
+        "y": 49
       },
       "targets": [
         {
@@ -4497,7 +4497,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 45
       },
       "targets": [
         {
@@ -4743,7 +4743,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 33
+        "y": 45
       },
       "targets": [
         {
@@ -4804,7 +4804,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 33
+        "y": 45
       },
       "targets": [
         {
@@ -4872,7 +4872,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 33
+        "y": 45
       },
       "targets": [
         {
@@ -4933,7 +4933,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 37
+        "y": 49
       },
       "targets": [
         {
@@ -4988,6 +4988,578 @@
           "values": false
         }
       }
+    },
+    {
+      "id": 200,
+      "title": "Dashboards",
+      "type": "row",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "id": 201,
+      "title": "Server Overview",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 11
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#4ecdc4"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#4ecdc4"
+              }
+            ]
+          },
+          "unit": "short",
+          "links": [
+            {
+              "title": "Server Overview",
+              "url": "/d/server-overview",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "count(up{job=~\"node-.*\"} == 1)",
+          "legendFormat": "Server Overview",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 202,
+      "title": "Docker Containers",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 5,
+        "y": 11
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#ff6b6b"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#ff6b6b"
+              }
+            ]
+          },
+          "unit": "short",
+          "links": [
+            {
+              "title": "Docker Containers",
+              "url": "/d/docker-containers",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "count(container_last_seen{name!=\"\"})",
+          "legendFormat": "Docker Containers",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 203,
+      "title": "Storage",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 10,
+        "y": 11
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#6bcf7f"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#6bcf7f"
+              }
+            ]
+          },
+          "unit": "bytes",
+          "links": [
+            {
+              "title": "Storage",
+              "url": "/d/storage",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_size_bytes{mountpoint=\"/\",job=~\"node-.*\"}) - sum(node_filesystem_avail_bytes{mountpoint=\"/\",job=~\"node-.*\"})",
+          "legendFormat": "Storage",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 204,
+      "title": "Network",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 15,
+        "y": 11
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3498db"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#3498db"
+              }
+            ]
+          },
+          "unit": "Bps",
+          "links": [
+            {
+              "title": "Network",
+              "url": "/d/network",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "sum(rate(node_network_receive_bytes_total{device!~\"lo|veth.*|br.*|docker.*|tailscale.*\"}[5m]))",
+          "legendFormat": "Network",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 205,
+      "title": "GPU RTX 3050",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 11
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#e67e22"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#e67e22"
+              }
+            ]
+          },
+          "unit": "percent",
+          "links": [
+            {
+              "title": "GPU",
+              "url": "/d/gpu",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "nvidia_gpu_utilization_gpu_ratio{server=\"222\"} * 100",
+          "legendFormat": "GPU RTX 3050",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "title": "Internet Speed",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#9b59b6"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#9b59b6"
+              }
+            ]
+          },
+          "unit": "Mbps",
+          "links": [
+            {
+              "title": "Internet Speed",
+              "url": "/d/internet-speed",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "speedtest_download_bits_per_second / 1000000",
+          "legendFormat": "Internet Speed",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 207,
+      "title": "Pi-hole DNS",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#e74c3c"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#e74c3c"
+              }
+            ]
+          },
+          "unit": "short",
+          "links": [
+            {
+              "title": "Pi-hole DNS",
+              "url": "/d/pihole-metrics",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "pihole_ads_blocked_today",
+          "legendFormat": "Pi-hole DNS",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 208,
+      "title": "Logs",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 16
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#1abc9c"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#1abc9c"
+              }
+            ]
+          },
+          "unit": "short",
+          "links": [
+            {
+              "title": "Log Explorer",
+              "url": "/d/logs-dashboard",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "sum(count_over_time({job=\"docker\"}[5m]))",
+          "legendFormat": "Logs",
+          "refId": "A",
+          "queryType": "instant"
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "title": "Electricity Cost",
+      "type": "stat",
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 16
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#f39c12"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#f39c12"
+              }
+            ]
+          },
+          "unit": "watt",
+          "links": [
+            {
+              "title": "Electricity Cost",
+              "url": "/d/electricity-cost",
+              "targetBlank": false
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "targets": [
+        {
+          "expr": "sum(node_hwmon_power_average_watt{job=~\"node-.*\"}) or vector(0)",
+          "legendFormat": "Electricity Cost",
+          "refId": "A"
+        }
+      ]
     }
   ],
   "links": [
