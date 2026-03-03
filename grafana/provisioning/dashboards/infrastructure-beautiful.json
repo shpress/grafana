@@ -1,0 +1,4993 @@
+{
+  "uid": "infra-beautiful",
+  "title": "Infrastructure Command Center",
+  "description": "Infrastructure monitoring \u2014 clean server stats, interactive Docker table, per-server uptime & temperatures",
+  "tags": [
+    "infrastructure",
+    "command-center",
+    "beautiful"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "fiscalYearStartMonth": 0,
+  "liveNow": false,
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "version": 5,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m"
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "#4ecdc4",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "enable": true,
+        "hide": false,
+        "iconColor": "#e74c3c",
+        "name": "Server Restarts",
+        "expr": "changes(node_boot_time_seconds[5m]) > 0",
+        "step": "60s",
+        "titleFormat": "Server Restart",
+        "textFormat": "Server {{server}} restarted",
+        "tagKeys": "server",
+        "type": "tags",
+        "useValueForTime": false
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "#3498db",
+        "name": "Speed Tests",
+        "expr": "changes(speedtest_download_bits_per_second[5m]) > 0",
+        "step": "300s",
+        "titleFormat": "Speed Test",
+        "textFormat": "Download: {{value}} bps",
+        "tagKeys": "",
+        "type": "tags",
+        "useValueForTime": false
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 100,
+      "type": "row",
+      "title": "Server Status",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "panels": []
+    },
+    {
+      "id": 2,
+      "title": "ZimaCube 222",
+      "description": "CPU % (4 cores, N150)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"222\"}[5m])) * 100)",
+          "legendFormat": "CPU",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "ZimaCube 224",
+      "description": "CPU % (4 cores, N150)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 5,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"224\"}[5m])) * 100)",
+          "legendFormat": "CPU",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "ZimaCube 228",
+      "description": "CPU % (2 cores, N3350)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 10,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"228\"}[5m])) * 100)",
+          "legendFormat": "CPU",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Synology NAS",
+      "description": "CPU % (4 cores, J4125)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 14,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"46\"}[5m])) * 100)",
+          "legendFormat": "CPU",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 8,
+      "title": "Oracle Cloud",
+      "description": "CPU % (4 cores, J4125)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 19,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"oracle\"}[5m])) * 100)",
+          "legendFormat": "CPU",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#9b59b6"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "Uptime",
+      "description": "Uptime per server",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "node_time_seconds{server=\"222\"} - node_boot_time_seconds{server=\"222\"}",
+          "legendFormat": "222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"224\"} - node_boot_time_seconds{server=\"224\"}",
+          "legendFormat": "224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"228\"} - node_boot_time_seconds{server=\"228\"}",
+          "legendFormat": "228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"46\"} - node_boot_time_seconds{server=\"46\"}",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"oracle\"} - node_boot_time_seconds{server=\"oracle\"}",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dtdurations",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#4ecdc4"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#4ecdc4"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Temperature",
+      "description": "CPU temperature per server (hwmon)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 11
+      },
+      "targets": [
+        {
+          "expr": "max(node_hwmon_temp_celsius{server=\"222\"})",
+          "legendFormat": "222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "max(node_hwmon_temp_celsius{server=\"224\"})",
+          "legendFormat": "224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "max(node_hwmon_temp_celsius{server=\"228\"})",
+          "legendFormat": "228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "max(node_hwmon_temp_celsius{server=\"46\"})",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "max(node_hwmon_temp_celsius{server=\"oracle\"})",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "decimals": 0,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#3498db"
+              },
+              {
+                "value": 60,
+                "color": "#f39c12"
+              },
+              {
+                "value": 80,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 101,
+      "type": "row",
+      "title": "Resources",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "panels": []
+    },
+    {
+      "id": 10,
+      "title": "CPU Usage",
+      "description": "All servers CPU utilization",
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 17
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"222\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"224\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"228\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"46\"}[5m])) * 100)",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"oracle\"}[5m])) * 100)",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 50,
+                "color": "#f39c12"
+              },
+              {
+                "value": 80,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showThresholdMarkers": true,
+        "showThresholdLabels": false,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "sizing": "auto"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Memory Usage",
+      "description": "All servers RAM utilization",
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 17
+      },
+      "targets": [
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"222\"} / node_memory_MemTotal_bytes{server=\"222\"}) * 100",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"224\"} / node_memory_MemTotal_bytes{server=\"224\"}) * 100",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"228\"} / node_memory_MemTotal_bytes{server=\"228\"}) * 100",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"46\"} / node_memory_MemTotal_bytes{server=\"46\"}) * 100",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"oracle\"} / node_memory_MemTotal_bytes{server=\"oracle\"}) * 100",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 60,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showThresholdMarkers": true,
+        "showThresholdLabels": false,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "sizing": "auto"
+      }
+    },
+    {
+      "id": 12,
+      "title": "System Load",
+      "description": "1-minute load average with sparkline",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 17
+      },
+      "targets": [
+        {
+          "expr": "node_load1{server=\"222\"}",
+          "legendFormat": "222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_load1{server=\"224\"}",
+          "legendFormat": "224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_load1{server=\"228\"}",
+          "legendFormat": "228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_load1{server=\"46\"}",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 2,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 2,
+                "color": "#f39c12"
+              },
+              {
+                "value": 4,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 13,
+      "title": "CPU Over Time",
+      "description": "CPU utilization history per server",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"222\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"224\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"228\"}[5m])) * 100)",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"46\"}[5m])) * 100)",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg by(server)(irate(node_cpu_seconds_total{mode=\"idle\", server=\"oracle\"}[5m])) * 100)",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 3,
+            "fillOpacity": 25,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "none"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 70,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 14,
+      "title": "Memory Over Time",
+      "description": "Memory utilization history per server",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "targets": [
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"222\"} / node_memory_MemTotal_bytes{server=\"222\"}) * 100",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"224\"} / node_memory_MemTotal_bytes{server=\"224\"}) * 100",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"228\"} / node_memory_MemTotal_bytes{server=\"228\"}) * 100",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"46\"} / node_memory_MemTotal_bytes{server=\"46\"}) * 100",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"oracle\"} / node_memory_MemTotal_bytes{server=\"oracle\"}) * 100",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 3,
+            "fillOpacity": 25,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "none"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 60,
+                "color": "#f39c12"
+              },
+              {
+                "value": 85,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 102,
+      "type": "row",
+      "title": "Storage",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "panels": []
+    },
+    {
+      "id": 21,
+      "title": "Server Uptime",
+      "description": "Current uptime duration per server",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "targets": [
+        {
+          "expr": "node_time_seconds{server=\"222\"} - node_boot_time_seconds{server=\"222\"}",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"224\"} - node_boot_time_seconds{server=\"224\"}",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"228\"} - node_boot_time_seconds{server=\"228\"}",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_time_seconds{server=\"46\"} - node_boot_time_seconds{server=\"46\"}",
+          "legendFormat": "Synology NAS",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dtdurations",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#4ecdc4"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#4ecdc4"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology NAS"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "graphMode": "none",
+        "colorMode": "background_gradient",
+        "justifyMode": "center",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 103,
+      "type": "row",
+      "title": "Internet Speed",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 54
+      },
+      "panels": []
+    },
+    {
+      "id": 30,
+      "title": "Download",
+      "description": "Current download speed (Mbps)",
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 55
+      },
+      "targets": [
+        {
+          "expr": "speedtest_download_bits_per_second / 1000000",
+          "legendFormat": "Download",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Mbps",
+          "decimals": 0,
+          "min": 0,
+          "max": 1000,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#e74c3c"
+              },
+              {
+                "value": 100,
+                "color": "#f39c12"
+              },
+              {
+                "value": 500,
+                "color": "#f1c40f"
+              },
+              {
+                "value": 800,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showThresholdMarkers": true,
+        "showThresholdLabels": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "sizing": "auto"
+      }
+    },
+    {
+      "id": 31,
+      "title": "Upload",
+      "description": "Current upload speed (Mbps)",
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 55
+      },
+      "targets": [
+        {
+          "expr": "speedtest_upload_bits_per_second / 1000000",
+          "legendFormat": "Upload",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Mbps",
+          "decimals": 0,
+          "min": 0,
+          "max": 1000,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#e74c3c"
+              },
+              {
+                "value": 100,
+                "color": "#f39c12"
+              },
+              {
+                "value": 500,
+                "color": "#f1c40f"
+              },
+              {
+                "value": 800,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showThresholdMarkers": true,
+        "showThresholdLabels": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "sizing": "auto"
+      }
+    },
+    {
+      "id": 32,
+      "title": "Ping",
+      "description": "Latency (ms)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 16,
+        "y": 55
+      },
+      "targets": [
+        {
+          "expr": "speedtest_ping_latency_milliseconds",
+          "legendFormat": "Ping",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 1,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 20,
+                "color": "#f39c12"
+              },
+              {
+                "value": 50,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 33,
+      "title": "Jitter",
+      "description": "Jitter (ms)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 20,
+        "y": 55
+      },
+      "targets": [
+        {
+          "expr": "speedtest_jitter_latency_milliseconds",
+          "legendFormat": "Jitter",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 1,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 5,
+                "color": "#f39c12"
+              },
+              {
+                "value": 15,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 34,
+      "title": "Speed History",
+      "description": "Download & Upload speed over time",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 0,
+        "y": 62
+      },
+      "targets": [
+        {
+          "expr": "speedtest_download_bits_per_second / 1000000",
+          "legendFormat": "Download",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "speedtest_upload_bits_per_second / 1000000",
+          "legendFormat": "Upload",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Mbps",
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 3,
+            "fillOpacity": 25,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "none"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Download"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Upload"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#2ecc71"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 35,
+      "title": "Ping & Jitter History",
+      "description": "Latency and jitter over time",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 62
+      },
+      "targets": [
+        {
+          "expr": "speedtest_ping_latency_milliseconds",
+          "legendFormat": "Ping",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "speedtest_jitter_latency_milliseconds",
+          "legendFormat": "Jitter",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 3,
+            "fillOpacity": 25,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "none"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ping"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Jitter"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 104,
+      "type": "row",
+      "title": "Network Traffic",
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 83
+      },
+      "panels": [
+        {
+          "id": 40,
+          "title": "Network In (Receive)",
+          "description": "Inbound network traffic per server",
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 84
+          },
+          "targets": [
+            {
+              "expr": "sum by(server)(irate(node_network_receive_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"222\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 222",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_receive_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"224\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 224",
+              "refId": "B",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_receive_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"228\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 228",
+              "refId": "C",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_receive_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"46\"}[5m])) * 8",
+              "legendFormat": "Synology",
+              "refId": "D",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_receive_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"oracle\"}[5m])) * 8",
+              "legendFormat": "Oracle",
+              "refId": "E",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bps",
+              "color": {
+                "mode": "fixed"
+              },
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 20,
+                "gradientMode": "scheme",
+                "spanNulls": true,
+                "lineInterpolation": "smooth",
+                "showPoints": "never",
+                "pointSize": 5,
+                "stacking": {
+                  "mode": "none"
+                },
+                "axisPlacement": "auto",
+                "axisLabel": "",
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                },
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisGridShow": true
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#2ecc71"
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 222"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#4ecdc4"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 224"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#3498db"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 228"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#f39c12"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Synology"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#e74c3c"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Oracle"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#9b59b6"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            },
+            "legend": {
+              "displayMode": "table",
+              "placement": "bottom",
+              "calcs": [
+                "mean",
+                "max",
+                "lastNotNull"
+              ],
+              "showLegend": true
+            }
+          }
+        },
+        {
+          "id": 41,
+          "title": "Network Out (Transmit)",
+          "description": "Outbound network traffic per server",
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 84
+          },
+          "targets": [
+            {
+              "expr": "sum by(server)(irate(node_network_transmit_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"222\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 222",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_transmit_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"224\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 224",
+              "refId": "B",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_transmit_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"228\"}[5m])) * 8",
+              "legendFormat": "ZimaCube 228",
+              "refId": "C",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_transmit_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"46\"}[5m])) * 8",
+              "legendFormat": "Synology",
+              "refId": "D",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "sum by(server)(irate(node_network_transmit_bytes_total{device!~\"lo|docker.*|br-.*|veth.*|cali.*\", server=\"oracle\"}[5m])) * 8",
+              "legendFormat": "Oracle",
+              "refId": "E",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bps",
+              "color": {
+                "mode": "fixed"
+              },
+              "custom": {
+                "lineWidth": 2,
+                "fillOpacity": 20,
+                "gradientMode": "scheme",
+                "spanNulls": true,
+                "lineInterpolation": "smooth",
+                "showPoints": "never",
+                "pointSize": 5,
+                "stacking": {
+                  "mode": "none"
+                },
+                "axisPlacement": "auto",
+                "axisLabel": "",
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                },
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisGridShow": true
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#2ecc71"
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 222"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#4ecdc4"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 224"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#3498db"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "ZimaCube 228"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#f39c12"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Synology"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#e74c3c"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Oracle"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "fixed",
+                      "fixedColor": "#9b59b6"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "options": {
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            },
+            "legend": {
+              "displayMode": "table",
+              "placement": "bottom",
+              "calcs": [
+                "mean",
+                "max",
+                "lastNotNull"
+              ],
+              "showLegend": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "type": "row",
+      "title": "GPU \u2014 RTX 3050 (ZimaCube 222)",
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 84
+      },
+      "panels": [
+        {
+          "id": 50,
+          "title": "GPU Utilization",
+          "description": "NVIDIA RTX 3050 compute usage",
+          "type": "gauge",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 0,
+            "y": 85
+          },
+          "targets": [
+            {
+              "expr": "nvidia_smi_utilization_gpu_ratio{job=\"nvidia-222\"} * 100 or nvidia_gpu_duty_cycle{job=\"nvidia-222\"}",
+              "legendFormat": "GPU %",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "decimals": 0,
+              "min": 0,
+              "max": 100,
+              "color": {
+                "mode": "continuous-BlYlRd"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#2ecc71"
+                  },
+                  {
+                    "value": 70,
+                    "color": "#f39c12"
+                  },
+                  {
+                    "value": 90,
+                    "color": "#e74c3c"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "showThresholdMarkers": true,
+            "showThresholdLabels": false,
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "orientation": "auto",
+            "sizing": "auto"
+          }
+        },
+        {
+          "id": 51,
+          "title": "GPU Temperature",
+          "description": "GPU die temperature",
+          "type": "gauge",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 6,
+            "y": 85
+          },
+          "targets": [
+            {
+              "expr": "nvidia_smi_temperature_gpu{job=\"nvidia-222\"} or nvidia_gpu_temperature_celsius{job=\"nvidia-222\"}",
+              "legendFormat": "Temp",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "celsius",
+              "decimals": 0,
+              "min": 0,
+              "max": 100,
+              "color": {
+                "mode": "continuous-BlYlRd"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#3498db"
+                  },
+                  {
+                    "value": 60,
+                    "color": "#f39c12"
+                  },
+                  {
+                    "value": 80,
+                    "color": "#e74c3c"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "showThresholdMarkers": true,
+            "showThresholdLabels": false,
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "orientation": "auto",
+            "sizing": "auto"
+          }
+        },
+        {
+          "id": 52,
+          "title": "VRAM Usage",
+          "description": "GPU video memory usage",
+          "type": "bargauge",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 12,
+            "y": 85
+          },
+          "targets": [
+            {
+              "expr": "nvidia_smi_memory_used_bytes{job=\"nvidia-222\"}",
+              "legendFormat": "Used",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            },
+            {
+              "expr": "nvidia_smi_memory_total_bytes{job=\"nvidia-222\"}",
+              "legendFormat": "Total",
+              "refId": "B",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bytes",
+              "color": {
+                "mode": "continuous-BlYlRd"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#2ecc71"
+                  },
+                  {
+                    "value": 4294967296,
+                    "color": "#f39c12"
+                  },
+                  {
+                    "value": 5368709120,
+                    "color": "#e74c3c"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "orientation": "horizontal",
+            "displayMode": "gradient",
+            "showUnfilled": true,
+            "sizing": "auto"
+          }
+        },
+        {
+          "id": 53,
+          "title": "Power Draw",
+          "description": "GPU power consumption",
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 18,
+            "y": 85
+          },
+          "targets": [
+            {
+              "expr": "nvidia_smi_power_draw_watts{job=\"nvidia-222\"} or nvidia_gpu_power_usage_milliwatts{job=\"nvidia-222\"} / 1000",
+              "legendFormat": "Power",
+              "refId": "A",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              }
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "watt",
+              "decimals": 1,
+              "color": {
+                "mode": "continuous-BlYlRd"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "value": null,
+                    "color": "#2ecc71"
+                  },
+                  {
+                    "value": 50,
+                    "color": "#f39c12"
+                  },
+                  {
+                    "value": 100,
+                    "color": "#e74c3c"
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "graphMode": "area",
+            "colorMode": "background_gradient",
+            "justifyMode": "auto",
+            "textMode": "auto",
+            "wideLayout": true,
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "type": "row",
+      "title": "Docker Containers",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 70
+      },
+      "panels": []
+    },
+    {
+      "id": 60,
+      "title": "Docker Containers",
+      "description": "All running containers \u2014 click a container name to view details",
+      "type": "table",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 71
+      },
+      "targets": [
+        {
+          "expr": "rate(container_cpu_usage_seconds_total{name!=\"\"}[5m]) * 100",
+          "legendFormat": "{{name}}",
+          "refId": "CPU",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "container_memory_usage_bytes{name!=\"\"}",
+          "legendFormat": "{{name}}",
+          "refId": "MEM",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "cpu": true,
+              "id": true,
+              "image": true,
+              "instance": true,
+              "job": true
+            },
+            "renameByName": {
+              "name": "Container",
+              "server": "Server",
+              "Value #CPU": "CPU %",
+              "Value #MEM": "Memory"
+            },
+            "indexByName": {
+              "name": 0,
+              "server": 1,
+              "Value #CPU": 2,
+              "Value #MEM": 3
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false,
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#1a1a2e"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Container"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 280
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View ${__data.fields.Container} details",
+                    "url": "/d/docker-containers?var-container=${__data.fields.Container}",
+                    "targetBlank": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Server"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "222": {
+                        "text": "ZimaCube 222",
+                        "color": "#4ecdc4"
+                      }
+                    }
+                  },
+                  {
+                    "type": "value",
+                    "options": {
+                      "224": {
+                        "text": "ZimaCube 224",
+                        "color": "#3498db"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "transparent"
+                    },
+                    {
+                      "value": 1,
+                      "color": "#2ecc7130"
+                    },
+                    {
+                      "value": 10,
+                      "color": "#f39c1250"
+                    },
+                    {
+                      "value": 50,
+                      "color": "#e74c3c70"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memory"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "gradient"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "transparent"
+                    },
+                    {
+                      "value": 104857600,
+                      "color": "#2ecc7120"
+                    },
+                    {
+                      "value": 524288000,
+                      "color": "#f39c1230"
+                    },
+                    {
+                      "value": 1073741824,
+                      "color": "#e74c3c40"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "CPU %",
+            "desc": true
+          }
+        ],
+        "cellHeight": "sm",
+        "footer": {
+          "show": true,
+          "reducer": [
+            "count"
+          ],
+          "countRows": true,
+          "fields": ""
+        }
+      }
+    },
+    {
+      "id": 22,
+      "title": "Disk I/O \u2014 Read",
+      "description": "Disk read throughput per server, gradient-filled data streams",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 46
+      },
+      "targets": [
+        {
+          "expr": "sum by(server)(irate(node_disk_read_bytes_total{server=\"222\"}[5m]))",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_read_bytes_total{server=\"224\"}[5m]))",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_read_bytes_total{server=\"228\"}[5m]))",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_read_bytes_total{server=\"46\"}[5m]))",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_read_bytes_total{server=\"oracle\"}[5m]))",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 40,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "normal"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 23,
+      "title": "Disk I/O \u2014 Write",
+      "description": "Disk write throughput per server, gradient-filled data streams",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 46
+      },
+      "targets": [
+        {
+          "expr": "sum by(server)(irate(node_disk_written_bytes_total{server=\"222\"}[5m]))",
+          "legendFormat": "ZimaCube 222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_written_bytes_total{server=\"224\"}[5m]))",
+          "legendFormat": "ZimaCube 224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_written_bytes_total{server=\"228\"}[5m]))",
+          "legendFormat": "ZimaCube 228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_written_bytes_total{server=\"46\"}[5m]))",
+          "legendFormat": "Synology",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(server)(irate(node_disk_written_bytes_total{server=\"oracle\"}[5m]))",
+          "legendFormat": "Oracle",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 40,
+            "gradientMode": "scheme",
+            "spanNulls": true,
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "normal"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 222"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 224"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ZimaCube 228"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oracle"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9b59b6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        }
+      }
+    },
+    {
+      "id": 70,
+      "title": "",
+      "type": "grafana-clock-panel",
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "options": {
+        "mode": "time",
+        "clockType": "24 hour",
+        "timezone": "America/Toronto",
+        "bgColor": "transparent",
+        "fontMono": true,
+        "dateSettings": {
+          "showDate": true,
+          "dateFormat": "MMMM D, YYYY",
+          "locale": "en",
+          "fontSize": "16px",
+          "fontWeight": "normal"
+        },
+        "timeSettings": {
+          "fontSize": "42px",
+          "fontWeight": "bold"
+        },
+        "timezoneSettings": {
+          "showTimezone": true,
+          "zoneFormat": "offsetAbbv",
+          "fontSize": "12px",
+          "fontWeight": "normal"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "transparent": true
+    },
+    {
+      "id": 71,
+      "title": "Network Topology",
+      "description": "Live infrastructure map showing server health and connections",
+      "type": "canvas",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"222\"}[5m])) * 100)",
+          "legendFormat": "cpu_222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"224\"}[5m])) * 100)",
+          "legendFormat": "cpu_224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"228\"}[5m])) * 100)",
+          "legendFormat": "cpu_228",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\", server=\"46\"}[5m])) * 100)",
+          "legendFormat": "cpu_46",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"222\"} / node_memory_MemTotal_bytes{server=\"222\"}) * 100",
+          "legendFormat": "ram_222",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"224\"} / node_memory_MemTotal_bytes{server=\"224\"}) * 100",
+          "legendFormat": "ram_224",
+          "refId": "F",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"228\"} / node_memory_MemTotal_bytes{server=\"228\"}) * 100",
+          "legendFormat": "ram_228",
+          "refId": "G",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "(1 - node_memory_MemAvailable_bytes{server=\"46\"} / node_memory_MemTotal_bytes{server=\"46\"}) * 100",
+          "legendFormat": "ram_46",
+          "refId": "H",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "up{job=~\"node-.*\"}",
+          "legendFormat": "up_{{server}}",
+          "refId": "I",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "inlineEditing": true,
+        "panZoom": false,
+        "infinitePan": false,
+        "root": {
+          "type": "frame",
+          "name": "root",
+          "elements": [
+            {
+              "type": "rectangle",
+              "name": "bg",
+              "config": {
+                "backgroundColor": {
+                  "fixed": "transparent"
+                },
+                "borderColor": {
+                  "fixed": "transparent"
+                },
+                "width": {
+                  "fixed": 900
+                },
+                "height": {
+                  "fixed": 300
+                }
+              },
+              "placement": {
+                "top": 0,
+                "left": 0,
+                "width": 900,
+                "height": 300
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_222",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/server.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#4ecdc4"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 40,
+                "left": 120,
+                "width": 48,
+                "height": 48
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_222",
+              "config": {
+                "text": {
+                  "fixed": "ZimaCube 222",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#4ecdc4"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 14
+              },
+              "placement": {
+                "top": 90,
+                "left": 85,
+                "width": 120,
+                "height": 22
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "subtitle_222",
+              "config": {
+                "text": {
+                  "fixed": "GPU | Media | Plex",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#666"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 10
+              },
+              "placement": {
+                "top": 110,
+                "left": 85,
+                "width": 120,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_224",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/server.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#3498db"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 40,
+                "left": 360,
+                "width": 48,
+                "height": 48
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_224",
+              "config": {
+                "text": {
+                  "fixed": "ZimaCube 224",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#3498db"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 14
+              },
+              "placement": {
+                "top": 90,
+                "left": 325,
+                "width": 120,
+                "height": 22
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "subtitle_224",
+              "config": {
+                "text": {
+                  "fixed": "Downloads | *arr | Dev",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#666"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 10
+              },
+              "placement": {
+                "top": 110,
+                "left": 315,
+                "width": 140,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_228",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/server.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#f39c12"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 170,
+                "left": 120,
+                "width": 48,
+                "height": 48
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_228",
+              "config": {
+                "text": {
+                  "fixed": "ZimaCube 228",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#f39c12"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 14
+              },
+              "placement": {
+                "top": 220,
+                "left": 85,
+                "width": 120,
+                "height": 22
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "subtitle_228",
+              "config": {
+                "text": {
+                  "fixed": "DNS (Pi-hole)",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#666"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 10
+              },
+              "placement": {
+                "top": 240,
+                "left": 85,
+                "width": 120,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_46",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/database.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#e74c3c"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 170,
+                "left": 360,
+                "width": 48,
+                "height": 48
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_46",
+              "config": {
+                "text": {
+                  "fixed": "Synology NAS",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#e74c3c"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 14
+              },
+              "placement": {
+                "top": 220,
+                "left": 325,
+                "width": 120,
+                "height": 22
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "subtitle_46",
+              "config": {
+                "text": {
+                  "fixed": "Storage | 13TB NAS",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#666"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 10
+              },
+              "placement": {
+                "top": 240,
+                "left": 315,
+                "width": 140,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_cloud",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/cloud-computing.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#9b59b6"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 10,
+                "left": 600,
+                "width": 48,
+                "height": 48
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_cloud",
+              "config": {
+                "text": {
+                  "fixed": "Oracle Cloud",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#9b59b6"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 14
+              },
+              "placement": {
+                "top": 60,
+                "left": 565,
+                "width": 120,
+                "height": 22
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "subtitle_cloud",
+              "config": {
+                "text": {
+                  "fixed": "Public Gateway | Traefik",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#666"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 10
+              },
+              "placement": {
+                "top": 80,
+                "left": 555,
+                "width": 140,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "icon",
+              "name": "icon_internet",
+              "config": {
+                "path": {
+                  "fixed": "img/icons/unicons/globe.svg"
+                },
+                "fill": {
+                  "field": {
+                    "fixed": ""
+                  },
+                  "fixed": "#e0e0e0"
+                },
+                "strokeWidth": {
+                  "fixed": 0
+                }
+              },
+              "placement": {
+                "top": 10,
+                "left": 800,
+                "width": 40,
+                "height": 40
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "label_internet",
+              "config": {
+                "text": {
+                  "fixed": "Internet",
+                  "mode": "fixed"
+                },
+                "color": {
+                  "fixed": "#e0e0e0"
+                },
+                "align": "center",
+                "valign": "middle",
+                "size": 12
+              },
+              "placement": {
+                "top": 52,
+                "left": 785,
+                "width": 70,
+                "height": 18
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              }
+            }
+          ],
+          "connections": [
+            {
+              "source": {
+                "name": "icon_222"
+              },
+              "target": {
+                "name": "icon_46"
+              },
+              "color": {
+                "fixed": "#4ecdc440"
+              },
+              "size": {
+                "fixed": 2
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_224"
+              },
+              "target": {
+                "name": "icon_46"
+              },
+              "color": {
+                "fixed": "#3498db40"
+              },
+              "size": {
+                "fixed": 2
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_222"
+              },
+              "target": {
+                "name": "icon_cloud"
+              },
+              "color": {
+                "fixed": "#9b59b640"
+              },
+              "size": {
+                "fixed": 2
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_224"
+              },
+              "target": {
+                "name": "icon_cloud"
+              },
+              "color": {
+                "fixed": "#9b59b640"
+              },
+              "size": {
+                "fixed": 2
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_cloud"
+              },
+              "target": {
+                "name": "icon_internet"
+              },
+              "color": {
+                "fixed": "#e0e0e040"
+              },
+              "size": {
+                "fixed": 2
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_228"
+              },
+              "target": {
+                "name": "icon_222"
+              },
+              "color": {
+                "fixed": "#f39c1240"
+              },
+              "size": {
+                "fixed": 1
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_228"
+              },
+              "target": {
+                "name": "icon_224"
+              },
+              "color": {
+                "fixed": "#f39c1240"
+              },
+              "size": {
+                "fixed": 1
+              },
+              "path": "straight",
+              "vertices": []
+            },
+            {
+              "source": {
+                "name": "icon_222"
+              },
+              "target": {
+                "name": "icon_224"
+              },
+              "color": {
+                "fixed": "#4ecdc420"
+              },
+              "size": {
+                "fixed": 1
+              },
+              "path": "straight",
+              "vertices": []
+            }
+          ]
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "transparent": true
+    },
+    {
+      "id": 72,
+      "title": "RAM Allocation",
+      "description": "Memory usage breakdown per server",
+      "type": "piechart",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 4
+      },
+      "targets": [
+        {
+          "expr": "node_memory_MemTotal_bytes{server=\"222\"} - node_memory_MemAvailable_bytes{server=\"222\"}",
+          "legendFormat": "222 Used",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_memory_MemAvailable_bytes{server=\"222\"}",
+          "legendFormat": "222 Free",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_memory_MemTotal_bytes{server=\"224\"} - node_memory_MemAvailable_bytes{server=\"224\"}",
+          "legendFormat": "224 Used",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "node_memory_MemAvailable_bytes{server=\"224\"}",
+          "legendFormat": "224 Free",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "222 Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "222 Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc420"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "224 Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "224 Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db20"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "values": [
+            "percent"
+          ]
+        },
+        "displayLabels": []
+      }
+    },
+    {
+      "id": 73,
+      "title": "Storage Allocation",
+      "description": "Total storage used vs free across all servers",
+      "type": "piechart",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_size_bytes{server=\"222\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"} - node_filesystem_avail_bytes{server=\"222\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "222 Used",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_avail_bytes{server=\"222\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "222 Free",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_size_bytes{server=\"224\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"} - node_filesystem_avail_bytes{server=\"224\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "224 Used",
+          "refId": "C",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_avail_bytes{server=\"224\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "224 Free",
+          "refId": "D",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_size_bytes{server=\"46\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"} - node_filesystem_avail_bytes{server=\"46\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "Synology Used",
+          "refId": "E",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_avail_bytes{server=\"46\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "Synology Free",
+          "refId": "F",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_size_bytes{server=\"228\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"} - node_filesystem_avail_bytes{server=\"228\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "228 Used",
+          "refId": "G",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "sum(node_filesystem_avail_bytes{server=\"228\", fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "228 Free",
+          "refId": "H",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "fixed"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "222 Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "222 Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4ecdc420"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "224 Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "224 Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3498db20"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Synology Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#e74c3c20"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "228 Used"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c12"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "228 Free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f39c1220"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "displayLabels": [
+          "name"
+        ]
+      }
+    },
+    {
+      "id": 74,
+      "title": "Total Storage",
+      "description": "Aggregate storage across all servers",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 33
+      },
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_size_bytes{fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "Total",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "decimals": 1,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#4ecdc4"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#4ecdc4"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "none",
+        "colorMode": "background_gradient",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 75,
+      "title": "Storage Used",
+      "description": "Total used storage across all servers",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 33
+      },
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_size_bytes{fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"} - node_filesystem_avail_bytes{fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "Used",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "decimals": 1,
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              },
+              {
+                "value": 15000000000000,
+                "color": "#f39c12"
+              },
+              {
+                "value": 18000000000000,
+                "color": "#e74c3c"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 76,
+      "title": "Storage Free",
+      "description": "Total available storage",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 37
+      },
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_avail_bytes{fstype!~\"tmpfs|devtmpfs|overlay|squashfs|nsfs\"})",
+          "legendFormat": "Free",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "decimals": 1,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#2ecc71"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#2ecc71"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "none",
+        "colorMode": "background_gradient",
+        "justifyMode": "center",
+        "textMode": "auto",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    },
+    {
+      "id": 77,
+      "title": "Docker Containers",
+      "description": "Running containers across all servers",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 37
+      },
+      "targets": [
+        {
+          "expr": "count(container_last_seen{server=\"222\",name!=\"\"})",
+          "legendFormat": "222",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        },
+        {
+          "expr": "count(container_last_seen{server=\"224\",name!=\"\"})",
+          "legendFormat": "224",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#9b59b6"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "#9b59b6"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "graphMode": "area",
+        "colorMode": "background_gradient",
+        "justifyMode": "auto",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      }
+    }
+  ]
+}

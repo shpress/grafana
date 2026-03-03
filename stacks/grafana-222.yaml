@@ -1,0 +1,106 @@
+services:
+    prometheus:
+      image: prom/prometheus:latest
+      container_name: prometheus
+      restart: unless-stopped
+      ports:
+        - 9090:9090
+      volumes:
+        - /media/sda/docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+        - /media/sda/docker/prometheus/data:/prometheus
+      command:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.path=/prometheus'
+        - '--storage.tsdb.retention.time=90d'
+        - '--web.enable-lifecycle'
+      deploy:
+        resources:
+          limits:
+            memory: 1G
+
+    grafana:
+      image: grafana/grafana:latest
+      container_name: grafana
+      restart: unless-stopped
+      ports:
+        - 3333:3000
+      volumes:
+        - /media/sda/docker/grafana/data:/var/lib/grafana
+        - /media/sda/docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      environment:
+        - GF_SERVER_ROOT_URL=https://dashboard.spressman.me
+        - GF_SERVER_HTTP_PORT=3000
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+        - GF_USERS_ALLOW_SIGN_UP=false
+        - GF_FEATURE_TOGGLES_ENABLE=grafanaconThemes
+        - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/infrastructure-beautiful.json
+        - GF_RENDERING_SERVER_URL=http://renderer:8081/render
+        - GF_RENDERING_CALLBACK_URL=http://grafana:3000/
+        - GF_LOG_FILTERS=rendering:debug
+      depends_on:
+        - prometheus
+    renderer:
+      image: grafana/grafana-image-renderer:latest
+      container_name: renderer
+      restart: unless-stopped
+      ports:
+        - 8081:8081
+
+    node-exporter:
+      image: prom/node-exporter:latest
+      container_name: node-exporter
+      restart: unless-stopped
+      network_mode: host
+      pid: host
+      volumes:
+        - /:/host:ro,rslave
+      command:
+        - '--path.rootfs=/host'
+        - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)(49137|/)'
+
+    nvidia-gpu-exporter:
+      image: utkuozdemir/nvidia_gpu_exporter:1.4.1
+      container_name: nvidia-gpu-exporter
+      restart: unless-stopped
+      ports:
+        - 9835:9835
+      volumes:
+        - /usr/bin/nvidia-smi:/usr/bin/nvidia-smi:ro
+        - /usr/lib/libnvidia-ml.so.1:/usr/lib/libnvidia-ml.so.1:ro
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                count: all
+                capabilities: [gpu]
+
+    cadvisor:
+      image: gcr.io/cadvisor/cadvisor:latest
+      container_name: cadvisor
+      restart: unless-stopped
+      ports:
+        - 9080:8080
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+        - /dev/disk/:/dev/disk:ro
+      privileged: true
+      devices:
+        - /dev/kmsg
+
+    speedtest-exporter:
+      image: miguelndecarvalho/speedtest-exporter:latest
+      container_name: speedtest-exporter
+      restart: unless-stopped
+      ports:
+        - 9798:9798
+      healthcheck:
+        test: [CMD, wget, --spider, -q, http://127.0.0.1:9798/]
+        interval: 120s
+        timeout: 10s
+        retries: 3
+        start_period: 60s

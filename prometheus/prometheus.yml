@@ -1,0 +1,92 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'node-222'
+    static_configs:
+      - targets: ['192.168.2.222:9100']
+        labels:
+          server: '222'
+          hostname: 'zima222'
+
+  - job_name: 'nvidia-222'
+    static_configs:
+      - targets: ['192.168.2.222:9835']
+        labels:
+          server: '222'
+
+  - job_name: 'cadvisor-222'
+    static_configs:
+      - targets: ['192.168.2.222:9080']
+        labels:
+          server: '222'
+
+  - job_name: 'speedtest'
+    scrape_interval: 30m
+    scrape_timeout: 120s
+    static_configs:
+      - targets: ['192.168.2.222:9798']
+
+  - job_name: 'node-224'
+    static_configs:
+      - targets: ['192.168.2.224:9100']
+        labels:
+          server: '224'
+          hostname: 'zima224'
+
+  - job_name: 'cadvisor-224'
+    static_configs:
+      - targets: ['192.168.2.224:9080']
+        labels:
+          server: '224'
+
+  - job_name: 'node-228'
+    static_configs:
+      - targets: ['192.168.2.228:9100']
+        labels:
+          server: '228'
+          hostname: 'zima228'
+
+  - job_name: 'node-46'
+    static_configs:
+      - targets: ['192.168.2.46:9100']
+        labels:
+          server: '46'
+          hostname: 'synology'
+
+  - job_name: 'node-oracle'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['100.99.150.34:9100']
+        labels:
+          server: 'oracle'
+          hostname: 'oracle'
+
+  - job_name: 'cadvisor-oracle'
+    scrape_interval: 30s
+    static_configs:
+      - targets: ['100.99.150.34:9080']
+        labels:
+          server: 'oracle'
+
+  - job_name: 'cadvisor-228'
+    scrape_interval: 30s
+    static_configs:
+      - targets: ['192.168.2.228:9080']
+        labels:
+          server: '228'
+
+  - job_name: 'cadvisor-46'
+    scrape_interval: 30s
+    static_configs:
+      - targets: ['192.168.2.46:9080']
+        labels:
+          server: '46'
+
+  - job_name: 'pihole'
+    scrape_interval: 30s
+    static_configs:
+      - targets: ['192.168.2.222:9617']
+        labels:
+          pihole_instance: 'primary'

@@ -1,0 +1,1483 @@
+{
+  "id": null,
+  "uid": "electricity-cost",
+  "title": "Electricity Cost",
+  "description": "Estimates electricity costs using CPU utilization from Prometheus node_exporter and Ontario Time-of-Use (TOU) rates.",
+  "tags": [
+    "electricity",
+    "cost",
+    "power",
+    "infrastructure"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "graphTooltip": 1,
+  "refresh": "1m",
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h"
+    ]
+  },
+  "fiscalYearStartMonth": 0,
+  "liveNow": false,
+  "weekStart": "",
+  "links": [],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "type": "row",
+      "title": "Current Wattage per Server",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 100,
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "stat",
+      "title": "Synology .46 Watts",
+      "description": "J4125 10W TDP + HDDs ~30W. Idle: 35W, Max: 55W",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 1,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "targets": [
+        {
+          "refId": "cpu_idle",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "watts",
+          "type": "math",
+          "expression": "35 + (55 - 35) * (1 - $cpu_idle)",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 48
+              },
+              {
+                "color": "red",
+                "value": 53
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "ZimaCube .222 Watts",
+      "description": "N150 6W TDP + RTX 3050 70W TDP + HDD ~8W. Idle: 30W, Max: 100W",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 2,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "targets": [
+        {
+          "refId": "cpu_idle",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "watts",
+          "type": "math",
+          "expression": "30 + (100 - 30) * (1 - $cpu_idle)",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "orange",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "ZimaCube .224 Watts",
+      "description": "N150 6W TDP + SSD ~5W. Idle: 20W, Max: 35W",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 3,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "targets": [
+        {
+          "refId": "cpu_idle",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "watts",
+          "type": "math",
+          "expression": "20 + (35 - 20) * (1 - $cpu_idle)",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 25
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 33
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "ZimaCube Mini .228 Watts",
+      "description": "N3350 6W TDP. Idle: 10W, Max: 15W",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 4,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "targets": [
+        {
+          "refId": "cpu_idle",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "watts",
+          "type": "math",
+          "expression": "10 + (15 - 10) * (1 - $cpu_idle)",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 12
+              },
+              {
+                "color": "orange",
+                "value": 13.5
+              },
+              {
+                "color": "red",
+                "value": 14.5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "row",
+      "title": "Cost Summary",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 101,
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "stat",
+      "title": "Total Current Wattage",
+      "description": "Sum of estimated wattage across all local servers (.46, .222, .224, .228). Oracle Cloud excluded (free tier).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 5,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "total_watts",
+          "type": "math",
+          "expression": "(35 + (55 - 35) * (1 - $idle_46)) + (30 + (100 - 30) * (1 - $idle_222)) + (20 + (35 - 20) * (1 - $idle_224)) + (10 + (15 - 10) * (1 - $idle_228))",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 120
+              },
+              {
+                "color": "orange",
+                "value": 160
+              },
+              {
+                "color": "red",
+                "value": 190
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Current Cost/Hour",
+      "description": "Total watts / 1000 * Ontario TOU weighted average rate ($0.13/kWh). For real-time TOU: Off-Peak $0.098, Mid-Peak $0.157, On-Peak $0.203.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 6,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 6,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "cost_per_hour",
+          "type": "math",
+          "expression": "((35 + (55 - 35) * (1 - $idle_46)) + (30 + (100 - 30) * (1 - $idle_222)) + (20 + (35 - 20) * (1 - $idle_224)) + (10 + (15 - 10) * (1 - $idle_228))) / 1000 * 0.13",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyCAD",
+          "decimals": 4,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.015
+              },
+              {
+                "color": "orange",
+                "value": 0.02
+              },
+              {
+                "color": "red",
+                "value": 0.025
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Estimated Daily Cost",
+      "description": "Total watts / 1000 * 24 hours * weighted average rate ($0.13/kWh).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 7,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "daily_cost",
+          "type": "math",
+          "expression": "((35 + (55 - 35) * (1 - $idle_46)) + (30 + (100 - 30) * (1 - $idle_222)) + (20 + (35 - 20) * (1 - $idle_224)) + (10 + (15 - 10) * (1 - $idle_228))) / 1000 * 24 * 0.13",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyCAD",
+          "decimals": 2,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.4
+              },
+              {
+                "color": "orange",
+                "value": 0.5
+              },
+              {
+                "color": "red",
+                "value": 0.6
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Estimated Monthly Cost",
+      "description": "Daily cost * 30 days. Uses weighted average Ontario TOU rate of $0.13/kWh.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 8,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 6
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "monthly_cost",
+          "type": "math",
+          "expression": "((35 + (55 - 35) * (1 - $idle_46)) + (30 + (100 - 30) * (1 - $idle_222)) + (20 + (35 - 20) * (1 - $idle_224)) + (10 + (15 - 10) * (1 - $idle_228))) / 1000 * 24 * 30 * 0.13",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyCAD",
+          "decimals": 2,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 12
+              },
+              {
+                "color": "orange",
+                "value": 15
+              },
+              {
+                "color": "red",
+                "value": 18
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "type": "row",
+      "title": "Ontario TOU Rate Reference",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 102,
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "text",
+      "title": "Ontario Time-of-Use Rates (Summer 2024)",
+      "id": 9,
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "| Period | Rate | Hours |\n|--------|------|-------|\n| **Off-Peak** | $0.098/kWh | Weekdays 7 PM - 7 AM, all day weekends & holidays |\n| **Mid-Peak** | $0.157/kWh | Weekdays 11 AM - 5 PM |\n| **On-Peak** | $0.203/kWh | Weekdays 7 AM - 11 AM and 5 PM - 7 PM |\n| **Weighted Avg** | ~$0.13/kWh | Used for daily/monthly estimates |\n\nOracle Cloud server is excluded from all calculations (free tier, $0 electricity cost)."
+      }
+    },
+    {
+      "type": "row",
+      "title": "Wattage Over Time",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 103,
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "Wattage Over Time per Server",
+      "description": "Estimated wattage per server over time based on CPU utilization. Stacked area chart.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 10,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "watts_46",
+          "type": "math",
+          "expression": "35 + (55 - 35) * (1 - $idle_46)",
+          "hide": false
+        },
+        {
+          "refId": "watts_222",
+          "type": "math",
+          "expression": "30 + (100 - 30) * (1 - $idle_222)",
+          "hide": false
+        },
+        {
+          "refId": "watts_224",
+          "type": "math",
+          "expression": "20 + (35 - 20) * (1 - $idle_224)",
+          "hide": false
+        },
+        {
+          "refId": "watts_228",
+          "type": "math",
+          "expression": "10 + (15 - 10) * (1 - $idle_228)",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 1,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "barAlignment": 0,
+            "lineWidth": 1,
+            "fillOpacity": 40,
+            "gradientMode": "scheme",
+            "spanNulls": false,
+            "insertNulls": false,
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "axisCenteredZero": false,
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "watts_46"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Synology .46"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "watts_222"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .222"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "watts_224"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .224"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "watts_228"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube Mini .228"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ]
+        }
+      }
+    },
+    {
+      "type": "row",
+      "title": "Cost Analysis",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 104,
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "piechart",
+      "title": "Cost Breakdown by Server",
+      "description": "Proportion of estimated electricity cost per server based on current wattage.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 11,
+      "gridPos": {
+        "h": 10,
+        "w": 10,
+        "x": 0,
+        "y": 28
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "cost_46",
+          "type": "math",
+          "expression": "(35 + (55 - 35) * (1 - $idle_46)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "cost_222",
+          "type": "math",
+          "expression": "(30 + (100 - 30) * (1 - $idle_222)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "cost_224",
+          "type": "math",
+          "expression": "(20 + (35 - 20) * (1 - $idle_224)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "cost_228",
+          "type": "math",
+          "expression": "(10 + (15 - 10) * (1 - $idle_228)) / 1000 * 0.13",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyCAD",
+          "decimals": 4,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "cost_46"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Synology .46"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "cost_222"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .222"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "cost_224"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .224"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "cost_228"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube Mini .228"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "reduceOptions": {
+          "values": false,
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": ""
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "displayLabels": [
+          "percent"
+        ]
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Historical Cost per Hour",
+      "description": "Estimated electricity cost per hour over time using the weighted average Ontario TOU rate of $0.13/kWh.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "id": 12,
+      "gridPos": {
+        "h": 10,
+        "w": 14,
+        "x": 10,
+        "y": 28
+      },
+      "targets": [
+        {
+          "refId": "idle_46",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.46.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_222",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.222.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_224",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.224.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "idle_228",
+          "expr": "avg(irate(node_cpu_seconds_total{mode=\"idle\", instance=~\"192\\.168\\.2\\.228.*\"}[5m]))",
+          "legendFormat": "",
+          "hide": true
+        },
+        {
+          "refId": "hourly_cost_46",
+          "type": "math",
+          "expression": "(35 + (55 - 35) * (1 - $idle_46)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "hourly_cost_222",
+          "type": "math",
+          "expression": "(30 + (100 - 30) * (1 - $idle_222)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "hourly_cost_224",
+          "type": "math",
+          "expression": "(20 + (35 - 20) * (1 - $idle_224)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "hourly_cost_228",
+          "type": "math",
+          "expression": "(10 + (15 - 10) * (1 - $idle_228)) / 1000 * 0.13",
+          "hide": false
+        },
+        {
+          "refId": "hourly_cost_total",
+          "type": "math",
+          "expression": "$hourly_cost_46 + $hourly_cost_222 + $hourly_cost_224 + $hourly_cost_228",
+          "hide": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyCAD",
+          "decimals": 4,
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "barAlignment": 0,
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "spanNulls": false,
+            "insertNulls": false,
+            "showPoints": "never",
+            "pointSize": 5,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "$/hour",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "axisCenteredZero": false,
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "hourly_cost_46"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Synology .46"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "hourly_cost_222"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .222"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "hourly_cost_224"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube .224"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "hourly_cost_228"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "ZimaCube Mini .228"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "hourly_cost_total"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ]
+        }
+      }
+    }
+  ]
+}
